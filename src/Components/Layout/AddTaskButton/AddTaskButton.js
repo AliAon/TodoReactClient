@@ -8,7 +8,7 @@ const AddTaskButton=(props)=>{
   }
     return(
     <div class={styles['buton-container']}>
-       <button onClick={addtaskhandler} class={styles['add-task-button']}>Add Task</button>
+       <button onClick={addtaskhandler} class={styles['add-task-button']}>Add New Task</button>
     </div>
 )
 }
