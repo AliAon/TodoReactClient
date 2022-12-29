@@ -1,0 +1,36 @@
+
+.task-list {
+    display: flex;
+    align-items: center;
+    height: 26px;
+    padding: 30px;
+    border-bottom: 1px solid #eee;
+}
+.col-title{
+    width: 70%;
+}
+.col-actions{
+    width: 30%;
+}
+.title-h5{
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+.actions__edit-btn{
+    padding: 12px;
+    background-color: grey;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+.actions__delete-btn{
+    padding: 12px;
+    background-color: red;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    font-size: 14px;
+}
