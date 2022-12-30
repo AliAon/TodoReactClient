@@ -1,11 +1,14 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import taskContext from '../../../Store/TasksContext';
 import styles from './AddTaskForm.module.css'
 
 const EditTaskForm = (props) => {
+    const tastctx= useContext(taskContext)
     //setting state for taking inputs
     const [Inputs,setInput]=useState({})
-    const tastctx= useContext(taskContext)
+    useEffect(()=>{
+       setInput(tastctx.Task)
+    },[])
     //Taking Title input 
     const enteredTitleHandler=(e)=>{
         const title=e.target.value
@@ -38,23 +41,22 @@ const EditTaskForm = (props) => {
             }
         })
     }
-
-    //Pushing Task To Backend
     const postTaskHandler=async (Inputs)=>{
-        const res=tastctx.addTask(Inputs)
-        console.log(res.ok);
+        const res=tastctx.updateTask(Inputs)
+        window.confirm('Are You Sure! Save Task')
+
     }
 
     //Submit Task To Backend
     const onsSubmitHandler=(e)=>{
         e.preventDefault()
-        // postTaskHandler(Inputs)
-        // props.onHide();
-        setInput({
-            title:'',
-            description:'',
-            completed:false
-        })
+        tastctx.updateTask(Inputs)
+         props.onHide();
+        // setInput({
+        //     title:'',
+        //     description:'',
+        //     completed:false
+        // })
     }
 
 
@@ -65,7 +67,7 @@ const EditTaskForm = (props) => {
           <input type="text" placeholder="Enter Description" name="email"  onChange={enteredDescriptionHandler} value={Inputs.description}  required/>
           Completed: <input type="checkbox"  onChange={isCompleteHandler} checked={Inputs.completed}/>
           <div className={styles.clearfix}>
-             <button type="submit"  className={styles['model__deletebtn']}>Save</button>
+             <button type="submit"  className={styles['model__deletebtn']}>Update</button>
           </div>
         </div>
     </form>

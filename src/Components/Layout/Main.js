@@ -27,7 +27,7 @@ const Main=(props)=>{
             </Model>
             }
               {isShowEditTask && <Model onHide={onHideEditTaskHandler}>
-                <EditTask/>
+                <EditTask onHide={onHideEditTaskHandler}/>
             </Model>}
 
             <TaskTabs onShow={onShowEditTaskHandler}/>

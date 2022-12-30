@@ -9,6 +9,15 @@ const TaskItem = (props) => {
     window.confirm('Are You Sure! Delete Task')
   }
 
+  const onEditHandler=()=>{
+   props.onshow()
+   //set current edit task in store
+   taskctx.StoreTask(props);
+   taskctx.GetTasks()
+  //  console.log(task)
+
+  }
+
  
   return (
     <li className={styles['task-list']}>
@@ -19,7 +28,7 @@ const TaskItem = (props) => {
       </div>
       <div className={styles['col-actions']}>
         <span>
-          <button type='button' className={styles['actions__edit-btn']} onClick={props.onshow}>
+          <button type='button' value={props.id} className={styles['actions__edit-btn']} onClick={onEditHandler}>
             Edit
           </button>
         </span>
