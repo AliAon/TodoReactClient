@@ -32,27 +32,29 @@ const TaskProvider=(props)=>{
 
     //get json task
     async function GetTasksHandler(){
-    const response = await fetch('http://127.0.0.1:8000/api/todo/')
+    const response = await fetch('http://localhost:8000/api/todos')
     const data     = await response.json() 
     dispatchTask({type:'GetAll',res:data})
     return data;
     }
 
     const addTaskHandler=async (task)=>{
-        const response=await fetch('http://127.0.0.1:8000/api/todo/',{
-            method:'POST',
+        const response=await fetch('http://localhost:8000/api/todos',{
+            method:'post',
             headers: {
                 'Content-Type':'application/json'
             },
             body:JSON.stringify(task),
         })
+        const data=await response.text()
+        console.log(data)
         dispatchTask({type:'AddTask'})
         //Get Latest Tasks Now
         GetTasksHandler()
     }
 
     const deleteTaskHandler=async (id)=>{
-        const response=await fetch(`http://127.0.0.1:8000/api/todo/${id}/`,{
+        const response=await fetch(`http://localhost:8000/api/todos/${id}`,{
             method:'delete'
         })
         //Get Lates Tasks and Rerender state
@@ -60,7 +62,7 @@ const TaskProvider=(props)=>{
         return response
     }
     const GetTaskHandler=async (id)=>{
-        const response=await fetch(`http://127.0.0.1:8000/api/todo/${id}/`)
+        const response=await fetch(`http://localhost:8000/api/todos/${id}/`)
         const data     = await response.json()
         dispatchTask({type:'GetTask',task:data})
 
@@ -72,7 +74,7 @@ const TaskProvider=(props)=>{
             description: task.description,
             completed: task.completed
         }
-        const response=await fetch(`http://127.0.0.1:8000/api/todo/${id}/`,{
+        const response=await fetch(`http://localhost:8000/api/todos/${id}`,{
             method:'put',
             headers: {
                 'Content-Type':'application/json'

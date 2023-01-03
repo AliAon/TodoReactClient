@@ -8,7 +8,7 @@ const CompletedTask = (props) => {
     taskctx.GetTasks()
    },[])
 
-   //Filter Completed Task
+  // Filter Completed Task
   const completedtask=taskctx.Tasks.filter((el)=>{
     return el.completed==true
    })
@@ -18,7 +18,8 @@ const CompletedTask = (props) => {
     
     <ul className={styles['ul-list']}>
      {
-    completedtask.map((el) =>{
+
+    completedtask?.map((el) =>{
         return <TaskItem key={el.id} id={el.id} onshow={props.onShow}  title={el.title} description={el.description}/>
      })
      } 
